@@ -23,8 +23,10 @@ app.post('/webhook', (req, res) => {
 function parseEntry(entry) {
   const event = entry.messaging[0]
   const senderId = event.sender.id;
-  const text = event.message;
-  callSendAPI(senderId, 'hello - '+ text);
+  const text = event.message.text;
+  callSendAPI(senderId, {
+    text: 'hello - '+ text
+  });
 }
 
 function callSendAPI(sender_psid, response) {
